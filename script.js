@@ -27,4 +27,20 @@ document.getElementById("playBtn").addEventListener("click", function() {
 //round setup
 answer = Math.floor(Math.random() * range) + 1;
 
-document.getElementById("msg").textContent = playerName + ". guess a number between 1 and " + range;
+document.getElementById("msg").textContent = playerName + ", guess a number between 1 and " + range;
+
+//pick answer
+
+answer = Math.floor(Math.random() * range) + 1;
+
+//Disable and enable buttons and radio choices
+document.getElementById("msg").textContent = playerName + ", guess a number between 1 and " + range;
+document.getElementById("playBtn").disabled = true;
+document.getElementById("guessBtn").disabled = false;
+document.getElementById("giveUpBtn").disabled = false;
+document.getElementById("guess").value = "";
+
+let levelRadios = document.getElementsByName("level");
+for (let i = 0; i < levelRadios.length; i++) {
+    levelRadios[i].disabled = true;
+}
