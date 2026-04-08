@@ -5,6 +5,10 @@ let guessCount = 0;
 let totalWins = 0;
 let totalGuesses = 0;
 let scores = [];
+let startTime = 0;
+let totalTime = 0;
+let fastestTime = Infinity;
+let totalRounds = 0;
 
 //Player name
 let playerName = prompt("Please enter your name:");
@@ -28,6 +32,7 @@ function play() {
     //round setup
     answer = Math.floor(Math.random() * range) + 1;
     guessCount = 0;
+    startTime = new Date().getTime();
 
     document.getElementById("msg").textContent = playerName + ", guess a number between 1 and " + range;
 
@@ -62,6 +67,9 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     if (num === answer) {
         document.getElementById("msg").textContent = "Correct, " + playerName + "! You guessed the number in " + guessCount + " tries.";
         document.getElementById("guessBtn").disabled = true;
+        updateScore(guessCount);
+        updateTimers(new Date().getTime());
+        reset();
     } else if (num > answer) {
         let feedback = "Too high. ";
         if (diff <= 2) {
@@ -86,8 +94,26 @@ document.getElementById("guessBtn").addEventListener("click", function() {
     document.getElementById("guess").value = "";
 });
 
+document.getElementById("giveUpBtn").addEventListener("click", giveUp);
+
+//give up
+function giveUp() {
+    let radios = document.getElementsByName("level");
+    let range = 3;
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            range = parseInt(radios[i].value);
+        }
+    }
+    totalRounds++;
+    updateScore(range);
+    updateTimers(new Date().getTime());
+    reset();
+}
+
 //update score when win
 function updateScore(score) {
+    totalRounds++;
     totalWins++;
     totalGuesses += score;
     scores.push(score);
@@ -108,3 +134,13 @@ function updateScore(score) {
         }
     }
 }
+
+//reset
+function reset() {
+    document.getElementById("playBtn").disabled = false;
+    document.getElementById("guessBtn").disabled = true;
+    document.getElementById("giveUpBtn").disabled = true;
+    let levelRadios = document.getElementsByName("level");
+    for (let i = 0; i < levelRadios.length; i++) {
+        levelRadios[i].disabled = false;
+    }
