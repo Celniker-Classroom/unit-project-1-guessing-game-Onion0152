@@ -44,3 +44,67 @@ function play() {
 }
 
 document.getElementById("playBtn").addEventListener("click", play);
+
+//guessing
+document.getElementById("guessBtn").addEventListener("click", function() {
+    let input = document.getElementById("guess").value;
+    let num = parseInt(input);
+
+    if (isNaN(num)) {
+        document.getElementById("msg").textContent = "Please enter a valid number.";
+        return;
+    }
+    
+    guessCount++;
+    let diff = Math.abs(num - answer);
+
+    //correct guess
+    if (num === answer) {
+        document.getElementById("msg").textContent = "Correct, " + playerName + "! You guessed the number in " + guessCount + " tries.";
+        document.getElementById("guessBtn").disabled = true;
+    } else if (num > answer) {
+        let feedback = "Too high. ";
+        if (diff <= 2) {
+            feedback += "Hot!";
+        } else if (diff <= 5) {
+            feedback += "Warm.";
+        } else {
+            feedback += "Cold.";
+        }
+        document.getElementById("msg").textContent = feedback;
+    } else if (num < answer) {
+        let feedback = "Too low. ";
+        if (diff <= 2) {
+            feedback += "Hot!";
+        } else if (diff <= 5) {
+            feedback += "Warm.";
+        } else {
+            feedback += "Cold.";
+        }
+        document.getElementById("msg").textContent = feedback;
+    }
+    document.getElementById("guess").value = "";
+});
+
+//update score when win
+function updateScore(score) {
+    totalWins++;
+    totalGuesses += score;
+    scores.push(score);
+    scores.sort(function(a, b) {
+        return a - b;
+    });
+
+    let avgScore = Math.round(totalGuesses / totalWins);
+
+    document.getElementById("wins").textContent = "Total Wins: " + totalWins;
+    document.getElementById("avgScore").textContent = "Average Score: " + avgScore;
+
+    //update leaderboard with top 3
+    let leaderboardItems = document.getElementsByName("leaderboard");
+    for (let i = 0; i < leaderboardItems.length; i++) {
+        if (i < scores.length) {
+            leaderboardItems[i].textContent = scores[i];
+        }
+    }
+}
