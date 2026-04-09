@@ -1,0 +1,1 @@
+In this project, I fulfilled the requirements with all the HTML and javascript elements which gave functionality to my page. In lines 161-191, I used code which I refrenced from the previous 8.8 dates project to track date and time by seconds as well as averaging out time and scores. Next, I decided to go for extra credit 

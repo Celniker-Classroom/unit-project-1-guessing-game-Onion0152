@@ -126,7 +126,7 @@ function updateScore(score) {
     document.getElementById("wins").textContent = "Total Wins: " + totalWins;
     document.getElementById("avgScore").textContent = "Average Score: " + avgScore;
 
-    //update leaderboard with top 3
+    //leaderboard
     let leaderboardItems = document.getElementsByName("leaderboard");
     for (let i = 0; i < leaderboardItems.length; i++) {
         if (i < scores.length) {
@@ -158,7 +158,7 @@ function updateTimers(endMs) {
     document.getElementById("avgTime").textContent = "Average Time: " + avgTime + "ms";
 }
 
-//dates and times
+//dates and times to guess
 function time() {
     let now = new Date();
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

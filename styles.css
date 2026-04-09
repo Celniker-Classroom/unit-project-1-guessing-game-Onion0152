@@ -1,0 +1,133 @@
+/* Dark centered design for the guessing game page */
+:root {
+  color-scheme: dark;
+  color: #e8ecef;
+  background-color: #0f1418;
+  font-family: 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 30% 20%, rgba(84, 111, 161, 0.22), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(25, 88, 155, 0.18), transparent 32%),
+    linear-gradient(180deg, #10131a 0%, #0b0e12 100%);
+}
+
+body > * {
+  width: min(100%, 520px);
+}
+
+body > h3:first-of-type {
+  margin-top: 0;
+}
+
+body > h3,
+body > p,
+ol {
+  text-align: center;
+}
+
+h3 {
+  margin: 1.4rem 0 0.75rem;
+  letter-spacing: 0.02em;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+p {
+  margin: 0.5rem 0;
+  line-height: 1.7;
+}
+
+label {
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+input[type="radio"] {
+  margin-right: 0.35rem;
+  accent-color: #58a6ff;
+}
+
+#date {
+  opacity: 0.75;
+  font-size: 0.95rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  max-width: 340px;
+  padding: 0.9rem 1rem;
+  margin-top: 0.4rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.04);
+  color: #f5f8fa;
+  font-size: 1rem;
+}
+
+button {
+  display: inline-block;
+  min-width: 110px;
+  margin: 0.5rem 0.35rem 0 0;
+  padding: 0.9rem 1rem;
+  border: none;
+  border-radius: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: linear-gradient(135deg, #3e6cff 0%, #1f75ff 100%);
+  color: white;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+button:not(:disabled):hover {
+  opacity: 0.92;
+}
+
+ol {
+  padding-left: 1.35rem;
+  margin: 0.75rem auto 0;
+  color: #cdd4da;
+}
+
+li[name="leaderboard"] {
+  margin: 0.45rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+@media (max-width: 460px) {
+  body {
+    padding: 1.5rem 0.75rem;
+  }
+
+  button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  label {
+    display: block;
+    margin: 0.45rem 0 0.25rem;
+  }
+}
