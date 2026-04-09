@@ -18,6 +18,19 @@ if (playerName === null || playerName.trim() === "") {
     playerName = playerName.charAt(0).toUpperCase() + playerName.slice(1).toLowerCase();
 }
 
+//light/dark mode
+document.getElementById("themeToggle").addEventListener("click", function() {
+    const body = document.body;
+    const toggleBtn = document.getElementById("themeToggle");
+    if (body.getAttribute("data-theme") === "light") {
+        body.removeAttribute("data-theme");
+        toggleBtn.textContent = "🌙";
+    } else {
+        body.setAttribute("data-theme", "light");
+        toggleBtn.textContent = "☀️";
+    }
+});
+
 //play
 function play() {
     //get level
@@ -69,6 +82,18 @@ document.getElementById("guessBtn").addEventListener("click", function() {
         document.getElementById("guessBtn").disabled = true;
         updateScore(guessCount);
         updateTimers(new Date().getTime());
+        // WHY WONT THE CONFETTI CENTER
+        setTimeout(() => {
+            const guessInput = document.getElementById('guess');
+            const rect = guessInput.getBoundingClientRect();
+            const centerX = (rect.left + rect.width / 2) / window.innerWidth;
+            const centerY = (rect.top + rect.height / 2) / window.innerHeight;
+            confetti({
+                particleCount: 120,
+                spread: 80,
+                origin: { x: centerX, y: centerY }
+            });
+        }, 100);
         reset();
     } else if (num > answer) {
         let feedback = "Too high. ";

@@ -1,9 +1,24 @@
-/* Dark centered design for the guessing game page */
+/*holy this was a pain */  
 :root {
-  color-scheme: dark;
-  color: #e8ecef;
-  background-color: #0f1418;
-  font-family: 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --bg-color: #0f1418;
+  --text-color: #e8ecef;
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --button-bg: linear-gradient(135deg, #3e6cff 0%, #1f75ff 100%);
+  --gradient-bg: radial-gradient(circle at 30% 20%, rgba(84, 111, 161, 0.22), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(25, 88, 155, 0.18), transparent 32%),
+    linear-gradient(180deg, #10131a 0%, #0b0e12 100%);
+}
+
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #1f2328;
+  --input-bg: rgba(0, 0, 0, 0.04);
+  --input-border: rgba(0, 0, 0, 0.12);
+  --button-bg: linear-gradient(135deg, #58a6ff 0%, #3e6cff 100%);
+  --gradient-bg: radial-gradient(circle at 30% 20%, rgba(84, 111, 161, 0.1), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(25, 88, 155, 0.08), transparent 32%),
+    linear-gradient(180deg, #f6f8fa 0%, #ffffff 100%);
 }
 
 * {
@@ -21,9 +36,10 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(circle at 30% 20%, rgba(84, 111, 161, 0.22), transparent 40%),
-    radial-gradient(circle at 80% 80%, rgba(25, 88, 155, 0.18), transparent 32%),
-    linear-gradient(180deg, #10131a 0%, #0b0e12 100%);
+  background: var(--gradient-bg);
+  color: var(--text-color);
+  font-family: 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  position: relative;
 }
 
 body > * {
@@ -72,10 +88,10 @@ input[type="text"] {
   max-width: 340px;
   padding: 0.9rem 1rem;
   margin-top: 0.4rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--input-border);
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  color: #f5f8fa;
+  background: var(--input-bg);
+  color: var(--text-color);
   font-size: 1rem;
 }
 
@@ -88,7 +104,7 @@ button {
   border-radius: 14px;
   font-weight: 700;
   letter-spacing: 0.01em;
-  background: linear-gradient(135deg, #3e6cff 0%, #1f75ff 100%);
+  background: var(--button-bg);
   color: white;
   cursor: pointer;
   transition: opacity 0.2s ease;
@@ -97,6 +113,25 @@ button {
 button:disabled {
   opacity: 0.45;
   cursor: not-allowed;
+}
+
+#themeToggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background: var(--input-bg);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+#themeToggle:hover {
+  transform: scale(1.1);
 }
 
 button:not(:disabled):hover {
